@@ -1,0 +1,14 @@
+package com.service.service;
+
+import com.service.request.FarmerRequest;
+
+public interface FarmerService   {
+
+	Boolean creatfarmer(FarmerService farmerService);
+
+	Boolean creatfarmer(FarmerRequest farmerService);
+	
+
+	
+
+}

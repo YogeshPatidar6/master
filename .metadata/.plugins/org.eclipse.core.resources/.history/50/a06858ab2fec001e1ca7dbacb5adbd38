@@ -1,0 +1,53 @@
+package com.service.request;
+
+import java.io.Serializable;
+
+public class AdminRequest implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer FarmerId;
+	private String Name;
+	private Integer Contact_no;
+	private String Address;
+	private String Villagename;
+	private String Agricultural_land;
+	public Integer getFarmerId() {
+		return FarmerId;
+	}
+	public String getName() {
+		return Name;
+	}
+	public Integer getContact_no() {
+		return Contact_no;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public String getVillagename() {
+		return Villagename;
+	}
+	public String getAgricultural_land() {
+		return Agricultural_land;
+	}
+	public void setFarmerId(Integer farmerId) {
+		FarmerId = farmerId;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public void setContact_no(Integer contact_no) {
+		Contact_no = contact_no;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public void setVillagename(String villagename) {
+		Villagename = villagename;
+	}
+	public void setAgricultural_land(String agricultural_land) {
+		Agricultural_land = agricultural_land;
+	}
+
+
+}

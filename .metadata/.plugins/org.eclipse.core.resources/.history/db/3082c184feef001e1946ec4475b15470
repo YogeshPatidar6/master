@@ -1,0 +1,13 @@
+package com.service.handler;
+
+import com.service.request.AdminRequest;
+import com.service.response.BaseResponse;
+
+public class FarmerHandler {
+
+	public BaseResponse creatuser(AdminRequest adminRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

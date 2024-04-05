@@ -1,0 +1,10 @@
+package com.service.service;
+
+import com.service.response.DTO.FarmerUserDTO;
+
+public interface FarmerService  implements {
+	
+
+	Boolean creatfarmer(FarmerService farmerService);
+
+}

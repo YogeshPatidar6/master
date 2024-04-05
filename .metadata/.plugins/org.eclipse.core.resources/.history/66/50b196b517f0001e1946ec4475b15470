@@ -1,0 +1,25 @@
+package com.service.handler;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.service.request.AdminRequest;
+import com.service.request.FarmerRequest;
+import com.service.response.BaseResponse;
+import com.service.service.AdminService;
+import com.service.service.FarmerService;
+@Service(value = "FarmerHandler")
+public class FarmerHandler {
+
+	@Autowired
+	FarmerService farmerService;
+
+	public BaseResponse creatuser(FarmerRequest farmerRequest) {
+		
+		
+		
+		
+		
+	}
+
+}

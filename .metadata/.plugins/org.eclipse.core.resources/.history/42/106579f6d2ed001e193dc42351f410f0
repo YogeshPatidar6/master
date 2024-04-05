@@ -1,0 +1,21 @@
+package com.service.request;
+
+import java.io.Serializable;
+
+public class FarmerRequest  implements Serializable{
+	
+	
+	private Integer farmerId;
+	private String name;
+	private Integer contact_no;
+	private String Address;
+	private String villagename;
+	private String experience;
+
+}
+`FarmerId` int NOT NULL AUTO_INCREMENT,
+`Name` varchar(255) DEFAULT NULL,
+`Contact_no` int DEFAULT NULL,
+`Address` varchar(255) DEFAULT NULL,
+`Villagename` varchar(255) DEFAULT NULL,
+`Agricultural_land` varchar(255) DEFAULT NULL,

@@ -1,0 +1,14 @@
+package com.service.handler;
+
+import com.service.request.AdminRequest;
+import com.service.request.FarmerRequest;
+import com.service.response.BaseResponse;
+
+public class FarmerHandler {
+
+	public BaseResponse creatuser(FarmerRequest farmerRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

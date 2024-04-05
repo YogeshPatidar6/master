@@ -1,0 +1,9 @@
+package com.service.dao;
+
+import com.service.service.FarmerService;
+
+public interface FarmerDAO {
+
+	Boolean addAdminuser(FarmerService farmerRequest);
+
+}

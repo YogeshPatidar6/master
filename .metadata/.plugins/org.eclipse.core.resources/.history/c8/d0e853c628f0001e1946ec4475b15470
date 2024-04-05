@@ -1,0 +1,51 @@
+package com.service.dao.impl;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.service.dao.FarmerDAO;
+import com.service.service.FarmerService;
+@Repository
+@Transactional
+public class FarmerDAOImpl implements FarmerDAO {
+	@Autowired
+	SessionFactory sessionFactory;
+
+	@Override
+	public Boolean addFarmeruser(FarmerService farmerService) {
+		Session session = sessionFactory.getCurrentSession();
+
+		String strQuery = "INSERT INTO Farmer(Name,Contact_no,Address,Villagename,Agricultural_land) "
+				+ "VALUES " + "(" + ":name," + ":pro," + ":cno," + ":add," + ":cn," + ":exp)";
+		try {
+
+			Query query = session.createSQLQuery(strQuery);
+
+			query.setParameter("nm", adminRequest.getName());
+			query.setParameter("contactno", adminRequest.getProfile());
+			query.setParameter("cno", adminRequest.getContact_no());
+			query.setParameter("add", adminRequest.getAddress());
+			System.out.println("hlw 1");
+			query.setParameter("cn", adminRequest.getCompanyName());
+			System.out.println("hlw 2");
+			query.setParameter("exp", adminRequest.getExperience());
+
+			query.executeUpdate();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// System.out.println("response Body " + e.getMessage());
+		} finally {
+			session.flush();
+			session.clear();
+		}
+		return false;
+	}
+	
+
+}

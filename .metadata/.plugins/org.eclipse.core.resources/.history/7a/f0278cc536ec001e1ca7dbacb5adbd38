@@ -1,0 +1,107 @@
+package com.service.handler;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.service.utils.Constants;
+import com.service.request.AdminRequest;
+import com.service.response.BaseResponse;
+import com.service.service.AdminService;
+
+@Service(value = "AdminHandler")
+public class AdminHandler extends BaseRequestHandler {
+
+	@Autowired
+	AdminService adminService;
+
+	public BaseResponse creatuser(AdminRequest adminRequest) {
+		try {
+			if (adminRequest == null) {
+
+
+				return convertAdmintoresponse(Constants.STATUSCODE_103, Constants.INVALID_REQUEST, "", null, null);
+			}
+
+			Boolean creatlist = adminService.addLists(adminRequest);
+
+			if (creatlist) {
+				return convertAdmintoresponse(Constants.STATUSCODE_100, Constants.SUCCESS, Constants.CREATE_USER,
+						creatlist, null);
+			} else {
+				return convertAdmintoresponse(Constants.STATUSCODE_103, Constants.OPERATIONAL_ERROR, "", null, null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return convertAdmintoresponse(Constants.STATUSCODE_104, Constants.NORECORDFOUND, null, null, null);
+		}
+
+	}
+
+	public BaseResponse getuserlist() {
+
+		
+		List<FarmerUserDTO> list = AdminService.getuserlist();
+
+		if (list != null && list.size() > 0) {
+			return convertAdmintoresponse(Constants.STATUSCODE_100, Constants.SUCCESS, null, null, list);
+		} else {
+			return convertAdmintoresponse(Constants.STATUSCODE_103, Constants.NORECORDFOUND, "", null, null);
+		}
+
+	}
+
+	public BaseResponse updateList(AdminRequest adminRequest) {
+		try {
+			
+			
+
+			if (adminRequest == null) {
+				return convertAdmintoresponse(Constants.STATUSCODE_103, Constants.PLEASE_ENTER_PARAM, "", null, null);
+			}
+
+			Boolean list = adminService.updateList(adminRequest);
+
+			System.out.println("list " + list);
+
+			if (list) {
+				return convertAdmintoresponse(Constants.STATUSCODE_100, Constants.UPDATE_SUCCESS,
+						Constants.UPDATE_SUCCESS, list, null);
+			} else {
+				return convertAdmintoresponse(Constants.STATUSCODE_103, Constants.OPERATIONAL_ERROR, "", null, null);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return convertAdmintoresponse(Constants.STATUSCODE_104, Constants.OPERATIONAL_ERROR, null, null, null);
+		}
+
+	}
+
+	public BaseResponse deleteUser(Integer userId) {
+		try {
+
+			if (userId == null) {
+
+				return convertAdmintoresponse(Constants.STATUSCODE_104,
+						"parameter ListId can't Be Null or Empty", null, null, null);
+			}
+
+			Boolean deleteUser = adminService.deleteUser(userId);
+
+			if (deleteUser) {
+				return convertAdmintoresponse(Constants.STATUSCODE_100, Constants.DELETE_SUCCESS,
+						null, deleteUser, null);
+
+			} else {
+				return convertAdmindeletetoresponse(Constants.STATUSCODE_103, Constants.NORECORDFOUND, "", null,
+						null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return convertAdmindeletetoresponse(Constants.STATUSCODE_104, Constants.OPERATIONAL_ERROR, null,
+					null, null);
+		}
+	}
+}

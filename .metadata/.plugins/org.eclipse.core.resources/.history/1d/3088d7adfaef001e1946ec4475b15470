@@ -1,0 +1,33 @@
+package com.service.controller.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.service.handler.FarmerHandler;
+
+import io.swagger.annotations.Api;
+
+@RestController
+@RequestMapping("farmer/access")
+@Api(value = "creat farmer api")
+
+public class Farmerconrollerimpl {
+	
+@Autowired
+FarmerHandler farmerHandler;
+
+@Override
+@ResponseStatus(HttpStatus.CREATED)
+@RequestMapping(value={"/farmer"}, method=RequestMethod.post)
+@RequestMapping(value = { "/creatadmin" }, method = RequestMethod.POST)
+
+		
+	
+	
+
+}

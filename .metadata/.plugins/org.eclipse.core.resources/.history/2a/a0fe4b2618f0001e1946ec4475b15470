@@ -1,0 +1,45 @@
+package com.service.handler;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.service.request.AdminRequest;
+import com.service.request.FarmerRequest;
+import com.service.response.BaseResponse;
+import com.service.service.AdminService;
+import com.service.service.FarmerService;
+import com.service.utils.Constants;
+@Service(value = "FarmerHandler")
+public class FarmerHandler {
+
+	@Autowired
+	FarmerService farmerService;
+
+	public BaseResponse creatuser(FarmerRequest farmerRequest) {
+		
+		try {
+			if (farmerRequest == null) {
+
+				return convertFarmertoresponse(Constants.STATUSCODE_103, Constants.INVALID_REQUEST, "", null, null);
+			}
+
+			Boolean creatlist = farmerService.addLists(farmerService);
+
+			if (creatlist) {
+				return convertFarmertoresponse(Constants.STATUSCODE_100, Constants.SUCCESS, Constants.CREATE_USER,
+						creatlist, null);
+			} else {
+				return convertFarmertoresponse(Constants.STATUSCODE_103, Constants.OPERATIONAL_ERROR, "", null, null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return convertFarmertoresponse(Constants.STATUSCODE_104, Constants.NORECORDFOUND, null, null, null);
+		}
+
+	}
+		
+		
+		
+	}
+
+}

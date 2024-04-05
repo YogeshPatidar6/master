@@ -1,0 +1,7 @@
+package com.service.service.impl;
+
+import com.service.service.FarmerService;
+
+public class FarmerServiceImpl implements FarmerService{
+
+}

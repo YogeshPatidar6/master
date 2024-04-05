@@ -1,0 +1,17 @@
+package com.service.request;
+
+import java.io.Serializable;
+
+public class AdminRequest implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer FarmerId;
+	private String Name;
+	private Integer Contact_no;
+	private String Address;
+	private String Villagename;
+	private String Agricultural_land;
+
+
+}

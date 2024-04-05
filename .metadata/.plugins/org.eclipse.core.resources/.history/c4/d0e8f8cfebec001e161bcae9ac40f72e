@@ -1,0 +1,70 @@
+package com.service.response.DTO;
+
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonView;
+import com.service.view.AssetActionView;
+
+public class AdminlistDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@JsonView(AssetActionView.getlist.class)
+	private Integer adminId;
+	@JsonView(AssetActionView.getlist.class)
+	private String name;
+	@JsonView(AssetActionView.getlist.class)
+	private String profile;
+	@JsonView(AssetActionView.getlist.class)
+	private Integer Contact_no;
+	@JsonView(AssetActionView.getlist.class)
+	private String Address;
+	@JsonView(AssetActionView.getlist.class)
+	private String companyName;
+	@JsonView(AssetActionView.getlist.class)
+	private String experience;
+
+	
+	public Integer getAdminId() {
+		return adminId;
+	}
+	public String getName() {
+		return name;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public Integer getContact_no() {
+		return Contact_no;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public String getExperience() {
+		return experience;
+	}
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public void setContact_no(Integer contact_no) {
+		Contact_no = contact_no;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+
+}

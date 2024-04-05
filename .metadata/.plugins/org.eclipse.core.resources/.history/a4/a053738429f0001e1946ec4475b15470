@@ -1,0 +1,10 @@
+package com.service.service;
+
+public interface FarmerService   {
+
+	Boolean creatfarmer(FarmerService farmerService);
+	
+
+	
+
+}

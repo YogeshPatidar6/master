@@ -1,0 +1,14 @@
+package com.service.view;
+
+public interface AssetActionView {
+
+	interface actionListView extends BaseView {
+	}
+
+	interface setPointConfigurationView extends BaseView {
+
+	}
+	interface getlist extends BaseView {
+
+	}
+}

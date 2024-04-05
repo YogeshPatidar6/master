@@ -1,0 +1,23 @@
+package com.service.dao.impl;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.service.dao.FarmerDAO;
+import com.service.service.FarmerService;
+@Repository
+@Transactional
+public class FarmerDAOImpl implements FarmerDAO {
+	@Autowired
+	SessionFactory sessionFactory;
+
+	@Override
+	public Boolean addFarmeruser(FarmerService farmerService) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

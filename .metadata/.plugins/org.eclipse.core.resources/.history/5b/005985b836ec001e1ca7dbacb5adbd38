@@ -1,0 +1,22 @@
+package com.service.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.service.request.AdminRequest;
+
+@Component
+public interface AdminService {
+
+	Boolean addLists(AdminRequest adminRequest);
+
+	List<FarmerUserDTO> getuserlist();
+
+	Boolean updateList(AdminRequest adminRequest);
+
+	Boolean deleteUser(Integer userId);
+
+
+
+}

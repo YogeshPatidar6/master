@@ -1,0 +1,9 @@
+package com.service.service.impl;
+
+import com.service.dao.FarmerDAO;
+import com.service.service.FarmerService;
+
+public class FarmerServiceImpl implements FarmerDAO{
+
+	
+}

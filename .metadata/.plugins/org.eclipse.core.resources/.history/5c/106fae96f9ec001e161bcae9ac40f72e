@@ -1,0 +1,171 @@
+package com.service.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.service.dao.AdminDAO;
+import com.service.request.AdminRequest;
+import com.service.response.DTO.AdminlistDTO;
+import com.service.response.DTO.FarmerUserDTO;
+
+@Repository
+@Transactional
+public class adminDAOImpl implements AdminDAO {
+
+	@Autowired
+	SessionFactory sessionFactory;
+
+	@Override
+	public Boolean addAdminuser(AdminRequest adminRequest) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		String strQuery = "INSERT INTO Admin(Name,Profile,Contact_no,Address,CompanyName,Experience_this_field) "
+				+ "VALUES " + "("
+				+ ":nm,"
+				+ ":pro,"
+				+ ":cno,"
+				+ ":add,"
+				+ ":cn,"
+				+ ":exp)";
+		try {
+
+			Query query = session.createSQLQuery(strQuery);
+	
+			query.setParameter("nm", adminRequest.getName());
+			query.setParameter("pro", adminRequest.getProfile());
+			query.setParameter("cno", adminRequest.getContact_no());
+			query.setParameter("add", adminRequest.getAddress());
+			System.out.println("hlw 1");
+			query.setParameter("cn", adminRequest.getCompanyName());
+			System.out.println("hlw 2");
+			query.setParameter("exp", adminRequest.getExperience());
+
+			query.executeUpdate();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println("response Body " + e.getMessage());
+		} finally {
+			session.flush();
+			session.clear();
+		}
+		return false;
+
+	}
+
+	@Override
+	public List<AdminlistDTO> addAdminuser1() {
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+			String strQuery = "select * from Admin";
+
+			Query query = session.createSQLQuery(strQuery);
+			query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+
+			List<Object> rows = query.list();
+			List<AdminlistDTO> adminList = new ArrayList<AdminlistDTO>();
+			for (Object row : rows) {
+				AdminlistDTO notification = new AdminlistDTO();
+				Map<String, Object> map = (Map<String, Object>) row;
+				notification.setAdminId((Integer) map.get("AdminId"));
+				notification.setName((String) map.get("Name"));
+				notification.setCompanyName((String) map.get("CompanyName"));
+				notification.setContact_no((Integer) map.get("Contact_no"));
+				notification.setProfile((String) map.get("Profile"));
+				notification.setAddress((String) map.get("Address"));	
+				notification.setExperience((String) map.get("Experience_this_field"));
+
+				
+				
+
+				adminList.add(notification);
+			}
+			return adminList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+//			logger.error("error occurred" + e.getMessage());
+//			logger.debug("DEBUG Error " + e);
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.clear();
+		}
+		return null;
+
+	}
+
+	@Override
+	public Boolean updatelist(AdminRequest adminRequest) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		String strQuery = "UPDATE Admin\n" + "SET name = :name ,\n" + " profile = :profile,\n "+" Contact_no=:Contact_no,\n"
+				+ "companyName = :companyName,\n" + "    experience = :experience\n" + "WHERE adminId =:adminId ";
+
+		System.out.println(strQuery);
+
+		try {
+			Query query = session.createSQLQuery(strQuery);
+
+			query.setParameter("name", adminRequest.getName());
+			query.setParameter("profile", adminRequest.getProfile());
+			query.setParameter("address", adminRequest.getAddress());
+			query.setParameter("Contact_no", adminRequest.getContact_no());
+			query.setParameter("companyName", adminRequest.getCompanyName());
+			query.setParameter("experience", adminRequest.getExperience());
+			query.setParameter("adminId", adminRequest.getAdminId());
+
+			Integer result = query.executeUpdate();
+
+			System.out.println("result " + result);
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			session.clear();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean deleteUser(Integer adminId) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+
+			Query query = session.createSQLQuery("DELETE FROM Admin WHERE adminId=:adminId");
+			query.setParameter("adminId", adminId);
+
+			query.executeUpdate();
+			query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+
+		} finally {
+			session.flush();
+			session.clear();
+		}
+		return false;
+
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.service.dao;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.service.service.FarmerService;
+@Repository
+@Transactional
+public class FarmerDAO  {
+
+	Boolean addAdminuser(FarmerService farmerRequest);
+
+}
